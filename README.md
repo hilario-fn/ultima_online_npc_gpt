@@ -30,10 +30,33 @@ This proof of concept integrates OpenAI's ChatGPT with an NPC in the Ultima Onli
 
    ![image](https://github.com/hilario-fn/ultima_online_npc_gpt/assets/58054675/ba175277-6e68-45a5-b6c1-c078092814d8)
 
-4. **API Key**: Replace the placeholder `YOUR_API_KEY` in `chatgpt_bridge.py` with your actual OpenAI API key.
+3. **API Key**: Replace the placeholder `YOUR_API_KEY` in `chatgpt_bridge.py` with your actual OpenAI API key.
 
-5. **GAC Installation**: Use `gacutil` to install the `Newtonsoft.Json.dll` into the Global Assembly Cache for Mono.
+4. **Newtonsoft.Json Installation**: Use `gacutil` to install the `Newtonsoft.Json.dll` into the Global Assembly Cache for Mono.
 
+   (You can use the Newtonsoft.Json.dll uploaded in this project (donet45 version) or you can Download it by yourself from the Json.NET website)
+
+5. **Download Newtonsoft library**: https://www.newtonsoft.com/json (if you rather, I uploaded the dll to this project already.
+- Extract the contents to a folder of preference
+- Navigate to the folder containing the dll. **For this project I used the dll in the "dotnet45" folder**
+- Run the following command:
+      ```
+      gacutil install Newtonsoft.Json.dll
+      ```
+6. Add the following entries to ServUO/Scripts/Scripts.csproj:
+   
+   ```
+   <ItemGroup>
+   <Reference Include="Newtonsoft.Json">
+    <HintPath>/opt/ServUO/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll</HintPath>
+   </Reference>
+   </ItemGroup>
+   <ItemGroup>
+    <Reference Include="System.Net.Http" />
+   </ItemGroup>
+   ``` 
+
+   
 ## Usage
 
 1. Add a SimpleChatVendor NPC
