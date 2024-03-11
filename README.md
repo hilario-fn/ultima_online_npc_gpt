@@ -43,18 +43,41 @@ This proof of concept integrates OpenAI's ChatGPT with an NPC in the Ultima Onli
       ```
       gacutil install Newtonsoft.Json.dll
       ```
-6. Add the following entries to ServUO/Scripts/Scripts.csproj:
+
+6. Use the following command to find out the dll path. 
+```
+   find /usr/lib/mono/gac | grep Newtonsoft.Json.dll
+```
+
+7. Copy Newtonsoft.Json.dll to /opt/ServUO/Newtonsoft/ (Create the folder if you haven't already) 
+
+8. Add the following entries to ServUO/Scripts/Scripts.csproj:
    
    ```
    <ItemGroup>
    <Reference Include="Newtonsoft.Json">
-    <HintPath>/opt/ServUO/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll</HintPath>
+    <HintPath>/opt/ServUO/Newtonsoft/Newtonsoft.Json.dll</HintPath>
    </Reference>
    </ItemGroup>
    <ItemGroup>
     <Reference Include="System.Net.Http" />
    </ItemGroup>
    ``` 
+
+9. Add the following entries to Data/Assemblies.cfg
+
+```
+/opt/ServUO/Newtonsoft/Newtonsoft.Json.dll
+System.Net.Http
+```
+
+10. Recompile ServUO
+
+```
+cd /opt/ServUO/
+make
+```
+
 
    
 ## Usage
